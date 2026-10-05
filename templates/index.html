@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Reclamos - Inicio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="bg-dark text-white py-5 mb-4 shadow-sm">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Gestión Integral de Reclamos</h1>
+        <p class="lead">Bienvenido al Portal de Atención y Soporte Técnico</p>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/inicio}">Sistema de Soporte</a>
+
+    <div class="ms-auto">
+        <!-- VISTA PARA USUARIO NO AUTENTICADO -->
+        <div sec:authorize="isAnonymous()">
+            <a th:href="@{/login/inicio}" class="btn btn-outline-primary me-2">Iniciar Sesión</a>
+            <a th:href="@{/usuarios/create}" class="btn btn-primary">Crear Cuenta</a>
+        </div>
+
+        <!-- VISTA PARA USUARIO AUTENTICADO -->
+        <div sec:authorize="isAuthenticated()" class="d-flex align-items-center gap-3">
+            <span>Hola, <strong sec:authentication="name">Usuario</strong></span>
+
+            <a th:href="@{/reclamos/create}" class="btn btn-warning">Realizar Reclamo</a>
+
+            <!-- Formulario POST obligatorio para Logout seguro con CSRF -->
+            <form th:action="@{/logout}" method="post" style="margin: 0;">
+                <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!-- Menú de Tarjetas Interactivas -->
+<div class="container my-5">
+    <div class="row g-4">
+
+        <!-- Tarjeta 1: Crear Reclamo -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm card-hover">
+                <div class="card-body text-center p-4">
+                    <div class="text-primary mb-3">
+                        <i class="bi bi-file-earmark-plus-fill display-4"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Nuevo Reclamo</h5>
+                    <p class="card-text text-muted">¿Tienes un problema? Registra una nueva incidencia para su revisión.</p>
+                    <a th:href="@{/reclamos/create}" class="btn btn-primary w-100 mt-2">Nuevo Reclamo</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2: Consultar Reclamos -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm card-hover">
+                <div class="card-body text-center p-4">
+                    <div class="text-success mb-3">
+                        <i class="bi bi-list-check display-4"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Mis Reclamos</h5>
+                    <p class="card-text text-muted">Consulta el estado, historial, archivos y respuestas de tus reclamos.</p>
+                    <a th:href="@{/reclamos}" class="btn btn-success w-100 mt-2">Ver Historial</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3: Administración / Reportes -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm card-hover">
+                <div class="card-body text-center p-4">
+                    <div class="text-warning mb-3">
+                        <i class="bi bi-gear-wide-connected display-4"></i>
+                    </div>
+                    <h5 class="card-title fw-bold">Gestión Técnica</h5>
+                    <p class="card-text text-muted">Módulo administrativo para responder tickets y gestionar adjuntos.</p>
+                    <a th:href="@{/reclamos}" class="btn btn-warning text-dark w-100 mt-2">Acceder</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

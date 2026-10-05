@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Roles</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h2>Listado de Roles</h2>
+
+        <a th:href="@{/roles/create}" class="btn btn-primary">
+            Nuevo Rol
+        </a>
+    </div>
+
+    <table class="table table-striped table-hover table-bordered">
+
+        <thead class="table-dark">
+
+        <form th:action="@{/roles/search}" method="get" class="row mb-4">
+
+            <div class="col-md-6">
+                <input type="text"
+                       name="search"
+                       class="form-control"
+                       placeholder="Buscar por descripcion">
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit"
+                        class="btn btn-primary">
+                    Buscar
+                </button>
+            </div>
+
+            <div class="col-md-2">
+                <a th:href="@{/roles/search}"
+                   class="btn btn-secondary">
+                    Limpiar
+                </a>
+            </div>
+
+        </form>
+
+        <tr>
+            <th>Id</th>
+            <th>Descripcion</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="s:${roles}">
+
+            <td th:text="${s.id}"></td>
+
+            <td th:text="${s.descrip}"></td>
+
+            <td>
+                <a th:href="@{/roles/edit/{id}(id=${s.id})}"
+                   class="btn btn-warning btn-sm">
+                    Editar
+                </a>
+
+                <a th:href="@{/roles/delete/{id}(id=${s.id})}"
+                   class="btn btn-danger btn-sm"
+                onclick="return confirm ('¿Estas seguro que desea eliminar este rol');">
+                    Eliminar
+                </a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

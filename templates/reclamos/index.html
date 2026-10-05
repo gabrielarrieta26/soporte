@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Reclamos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h2>Listado de Reclamos</h2>
+
+        <a th:href="@{/reclamos/create}" class="btn btn-primary">
+            Nuevo Reclamo
+        </a>
+    </div>
+    <div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered">
+
+        <thead class="table-dark">
+
+        <form th:action="@{/reclamos/search}" method="get" class="row mb-4">
+
+            <div class="col-md-6">
+                <input type="text"
+                       name="search"
+                       class="form-control"
+                       placeholder="Buscar por mensaje de asunto">
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit"
+                        class="btn btn-primary">
+                    Buscar
+                </button>
+            </div>
+
+            <div class="col-md-2">
+                <a th:href="@{/reclamos/search}"
+                   class="btn btn-secondary">
+                    Limpiar
+                </a>
+            </div>
+
+        </form>
+
+        <tr>
+            <th>Id</th>
+            <th>Asunto</th>
+            <th>Fecha</th>
+            <th>Fecha y Hora</th>
+            <th>Cliente</th>
+            <th>Contrato</th>
+            <th>Motivo</th>
+            <th>Estado</th>
+            <th>Respuestas</th>
+            <th>Archivos</th>
+            <th>Mensaje</th>
+            <th>Observacion</th>
+            <th>Finalizado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="r:${reclamos}">
+
+            <td th:text="${r.id}"></td>
+
+            <td th:text="${r.asunto}"></td>
+
+            <td th:text="${r.fecha}"></td>
+
+            <td th:text="${r.feHora}"></td>
+
+            <td th:text="${r.cliente.nom}"></td>
+
+            <td th:text="${r.contrato.feAlta}"></td>
+
+            <td th:text="${r.motivosReclamo?.descrip}"></td>
+
+            <td th:text="${r.reclamosEstado?.descrip}"></td>
+
+            <td>
+            <span th:text="${r.reclamosRespuestas.size()}">0</span>
+                <a th:href="@{/reclamos/{id}/reclamosRespuestas(id=${r.id})}"
+                   class="btn btn-info btn-sm">
+                    Ver respuestas
+                </a>
+            </td>
+
+            <td>
+                <span th:text="${r.reclamosFiles.size()}">0</span>
+                <a th:href="@{/reclamos/{id}/reclamosFiles(id=${r.id})}"
+                   class="btn btn-info btn-sm">
+                    Ver Archivos
+                </a>
+            </td>
+
+            <td th:text="${r.mensaje}"></td>
+
+            <td th:text="${r.observacion}"></td>
+
+            <td th:text="${r.finalizado ? 'si' : 'no'}"></td>
+
+            <td>
+                <a th:href="@{/reclamos/edit/{id}(id=${r.id})}"
+                   class="btn btn-warning btn-sm">
+                    Editar
+                </a>
+
+                <a th:href="@{/reclamos/delete/{id}(id=${r.id})}"
+                   class="btn btn-danger btn-sm"
+                onclick="return confirm ('¿Estas seguro que desea eliminar este reclamo');">
+                    Eliminar
+                </a>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    </div>
+    
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

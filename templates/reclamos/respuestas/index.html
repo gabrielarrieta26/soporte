@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Respuestas del Reclamo</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h2>Respuestas del Reclamo</h2>
+
+    </div>
+
+    <table class="table table-striped table-hover table-bordered">
+
+        <thead class="table-dark">
+
+        <tr>
+            <th>Id</th>
+            <th>Reclamo</th>
+            <th>Fecha</th>
+            <th>Fecha y Hora</th>
+            <th>Prioridad</th>
+            <th>Mensaje</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="r:${respuestas}">
+
+            <td th:text="${r.id}"></td>
+
+            <td th:text="${r.reclamo.asunto}"></td>
+
+            <td th:text="${r.fecha}"></td>
+
+            <td th:text="${r.feHora}"></td>
+
+            <td th:text="${r.prioridad}"></td>
+
+            <td th:text="${r.mensaje}"></td>
+
+            <div class="mb-3">
+                <a href="javascript:history.back()" class="btn btn-secondary">
+                    Volver
+                </a>
+            </div>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
