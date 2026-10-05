@@ -3,250 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Clases y Vistas - Mis Proyectos</title>
+    <title>Índice de Vistas y Proyectos</title>
     <style>
         :root {
-            --bg-color: #f4f6f9;
-            --sidebar-bg: #1e293b;
-            --sidebar-text: #94a3b8;
-            --sidebar-text-hover: #ffffff;
-            --accent-color: #3b82f6;
+            --bg-color: #f8fafc;
             --card-bg: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
+            --border-color: #e2e8f0;
         }
 
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
+            margin: 0;
+            padding: 40px 20px;
         }
 
-        /* Barra lateral de navegación */
-        sidebar {
-            width: 320px;
-            background-color: var(--sidebar-bg);
-            color: var(--sidebar-text);
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid #334155;
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .sidebar-header {
-            padding: 20px;
-            border-bottom: 1px solid #334155;
+        header {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        .sidebar-header h2 {
-            color: #ffffff;
-            font-size: 1.2rem;
+        header h1 {
+            color: var(--text-main);
+            font-size: 2rem;
             margin-bottom: 10px;
         }
 
-        .search-box {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: 1px solid #475569;
-            background-color: #0f172a;
-            color: #ffffff;
-            outline: none;
-        }
-
-        .search-box:focus {
-            border-color: var(--accent-color);
-        }
-
-        .nav-list {
-            list-style: none;
-            overflow-y: auto;
-            flex: 1;
-            padding: 15px;
-        }
-
-        .class-group {
-            margin-bottom: 20px;
-        }
-
-        .class-title {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #64748b;
-            margin-bottom: 8px;
-            padding-left: 5px;
-        }
-
-        .nav-item {
-            margin-bottom: 5px;
-        }
-
-        .nav-link {
-            display: block;
-            padding: 10px 12px;
-            color: var(--sidebar-text);
-            background-color: rgba(255, 255, 255, 0.03);
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-        }
-
-        .nav-link:hover {
-            background-color: rgba(59, 130, 246, 0.15);
-            color: var(--sidebar-text-hover);
-            padding-left: 16px;
-        }
-
-        /* Área principal de contenido */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
-
-        .top-bar {
-            padding: 15px 30px;
-            background-color: var(--card-bg);
-            border-bottom: 1px solid #e2e8f0;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .content-frame {
-            flex: 1;
-            border: none;
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-        }
-
-        .welcome-view {
-            padding: 40px;
-            text-align: center;
-            margin: auto;
-        }
-
-        .welcome-view h1 {
-            color: var(--accent-color);
-            margin-bottom: 15px;
-        }
-
-        .welcome-view p {
+        header p {
             color: var(--text-muted);
-            max-width: 500px;
-            line-height: 1.5;
-            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        .table-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .btn-view {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-view:hover {
+            background-color: var(--accent-hover);
         }
     </style>
 </head>
 <body>
 
-    <!-- BARRA LATERAL (Menú de clases y vistas) -->
-    <sidebar>
-        <div class="sidebar-header">
-            <h2>📚 Soporte Tecnico</h2>
-            <!-- Buscador para filtrar clases rápidamente -->
-            <input type="text" id="searchInput" class="search-box" placeholder="Buscar clase o vista..." onkeyup="filterViews()">
+    <div class="container">
+        <header>
+            <h1>🗂️ Directorio de Vistas y Clases</h1>
+            <p>Haz clic en cualquier enlace de la tabla para abrir la vista correspondiente de forma directa.</p>
+        </header>
+
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Clase / Módulo</th>
+                        <th>Nombre de la Vista</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- CLASE 1 -->
+                    <tr>
+                        <td><span class="badge">Clase 1</span></td>
+                        <td><strong>Vista Principal / Inicio</strong></td>
+                        <td><a href="clase1/vista1.html" class="btn-view" target="_blank">Ver Vista &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge">Clase 1</span></td>
+                        <td><strong>Formulario de Registro</strong></td>
+                        <td><a href="clase1/vista2.html" class="btn-view" target="_blank">Ver Vista &rarr;</a></td>
+                    </tr>
+
+                    <!-- CLASE 2 -->
+                    <tr>
+                        <td><span class="badge">Clase 2</span></td>
+                        <td><strong>Listado de Clientes / Datos</strong></td>
+                        <td><a href="clase2/vista1.html" class="btn-view" target="_blank">Ver Vista &rarr;</a></td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge">Clase 2</span></td>
+                        <td><strong>Panel de Administración</strong></td>
+                        <td><a href="clase2/vista2.html" class="btn-view" target="_blank">Ver Vista &rarr;</a></td>
+                    </tr>
+
+                    <!-- Puedes agregar más filas aquí abajo copiando la estructura de arriba -->
+
+                </tbody>
+            </table>
         </div>
-        
-        <ul class="nav-list" id="navList">
-            
-            <!-- CLASE 1 -->
-            <div class="class-group" data-category="Home">
-                <div class="class-title">Home</div>
-                <li class="nav-item">
-                    <a href="templates/index.html" target="vistaFrame" class="nav-link">Home: Pantalla Principal</a>
-                </li>
-            </div>
+    </div>
 
-            <!-- CLASE 2 -->
-            <div class="class-group" data-category="Reclamos">
-                <div class="class-title">Reclamos</div>
-                <li class="nav-item">
-                    <a href="templates/reclamos/index.html" target="vistaFrame" class="nav-link">Reclamos: Lista de Reclamos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="templates/reclamos/form.html" target="vistaFrame" class="nav-link">Reclamos: Formulario</a>
-                </li>
-            </div>
-
-            <div class="class-group" data-category="Clientes">
-                <div class="class-title">Clientes</div>
-                <li class="nav-item">
-                    <a href="Clientes/index.html" target="vistaFrame" class="nav-link">Clientes: Lista de Clientes</a>
-                </li>
-                <li class="nav-item">
-                    <a href="Clientes/form.html" target="vistaFrame" class="nav-link">Clientes: Formulario</a>
-                </li>
-            </div>
-
-            <div class="class-group" data-category="Contratos">
-                <div class="class-title">Contratos</div>
-                <li class="nav-item">
-                    <a href="Reclamos/index.html" target="vistaFrame" class="nav-link">Reclamos: Lista de Reclamos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="Reclamos/form.html" target="vistaFrame" class="nav-link">Reclamos: Formulario</a>
-                </li>
-            </div>
-
-            <!-- Puedes seguir copiando y pegando bloques .class-group para más clases -->
-
-        </ul>
-    </sidebar>
-
-    <!-- ÁREA PRINCIPAL -->
-    <main>
-        <div class="top-bar">
-            <span id="currentTitle">Selecciona una vista de la izquierda 👈</span>
-        </div>
-        
-        <!-- Aquí se cargan tus vistas automáticamente sin recargar la página -->
-        <iframe name="vistaFrame" class="content-frame">
-            <!-- Vista inicial por defecto si no se hace clic -->
-            <div class="welcome-view">
-                <h1>Bienvenido a tu panel</h1>
-                <p>Haz clic en cualquiera de las vistas del menú izquierdo para comenzar a explorarlas de forma organizada y fluida.</p>
-            </div>
-        </iframe>
-    </main>
-
-    <script>
-        // Script para el buscador en tiempo real
-        function filterViews() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let groups = document.getElementsByClassName('class-group');
-
-            for (let i = 0; i < groups.length; i++) {
-                let text = groups[i].innerText.toLowerCase();
-                if (text.includes(input)) {
-                    groups[i].style.display = "";
-                } else {
-                    groups[i].style.display = "none";
-                }
-            }
-        }
-
-        // Cambiar título superior al hacer clic en un enlace
-        const links = document.querySelectorAll('.nav-link');
-        const titleSpan = document.getElementById('currentTitle');
-
-        links.forEach(link => {
-            link.addEventListener('click', function() {
-                titleSpan.textContent = this.textContent;
-            });
-        });
-    </script>
 </body>
 </html>
