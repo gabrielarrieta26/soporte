@@ -155,7 +155,7 @@
     <!-- BARRA LATERAL (Menú de clases y vistas) -->
     <sidebar>
         <div class="sidebar-header">
-            <h2>📚 Mis Clases</h2>
+            <h2>📚 Soporte Tecnico</h2>
             <!-- Buscador para filtrar clases rápidamente -->
             <input type="text" id="searchInput" class="search-box" placeholder="Buscar clase o vista..." onkeyup="filterViews()">
         </div>
@@ -163,24 +163,41 @@
         <ul class="nav-list" id="navList">
             
             <!-- CLASE 1 -->
-            <div class="class-group" data-category="clase 1">
-                <div class="class-title">Clase 1</div>
+            <div class="class-group" data-category="Home">
+                <div class="class-title">Home</div>
                 <li class="nav-item">
-                    <a href="clase1/vista1.html" target="vistaFrame" class="nav-link">Vista 1: Pantalla Principal</a>
-                </li>
-                <li class="nav-item">
-                    <a href="clase1/vista2.html" target="vistaFrame" class="nav-link">Vista 2: Formulario de Registro</a>
+                    <a href="templates/index.html" target="vistaFrame" class="nav-link">Home: Pantalla Principal</a>
                 </li>
             </div>
 
             <!-- CLASE 2 -->
-            <div class="class-group" data-category="clase 2">
-                <div class="class-title">Clase 2</div>
+            <div class="class-group" data-category="Reclamos">
+                <div class="class-title">Reclamos</div>
                 <li class="nav-item">
-                    <a href="clase2/vista1.html" target="vistaFrame" class="nav-link">Vista 1: Listado de Datos</a>
+                    <a href="templates/reclamos/index.html" target="vistaFrame" class="nav-link">Reclamos: Lista de Reclamos</a>
                 </li>
                 <li class="nav-item">
-                    <a href="clase2/vista2.html" target="vistaFrame" class="nav-link">Vista 2: Panel de Administración</a>
+                    <a href="templates/reclamos/form.html" target="vistaFrame" class="nav-link">Reclamos: Formulario</a>
+                </li>
+            </div>
+
+            <div class="class-group" data-category="Clientes">
+                <div class="class-title">Clientes</div>
+                <li class="nav-item">
+                    <a href="Clientes/index.html" target="vistaFrame" class="nav-link">Clientes: Lista de Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Clientes/form.html" target="vistaFrame" class="nav-link">Clientes: Formulario</a>
+                </li>
+            </div>
+
+            <div class="class-group" data-category="Contratos">
+                <div class="class-title">Contratos</div>
+                <li class="nav-item">
+                    <a href="Reclamos/index.html" target="vistaFrame" class="nav-link">Reclamos: Lista de Reclamos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Reclamos/form.html" target="vistaFrame" class="nav-link">Reclamos: Formulario</a>
                 </li>
             </div>
 
