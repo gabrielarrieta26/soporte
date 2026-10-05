@@ -1,1 +1,235 @@
-# soporte Tecnico 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Clases y Vistas - Mis Proyectos</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --sidebar-bg: #1e293b;
+            --sidebar-text: #94a3b8;
+            --sidebar-text-hover: #ffffff;
+            --accent-color: #3b82f6;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Barra lateral de navegación */
+        sidebar {
+            width: 320px;
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #334155;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid #334155;
+        }
+
+        .sidebar-header h2 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background-color: #0f172a;
+            color: #ffffff;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-color);
+        }
+
+        .nav-list {
+            list-style: none;
+            overflow-y: auto;
+            flex: 1;
+            padding: 15px;
+        }
+
+        .class-group {
+            margin-bottom: 20px;
+        }
+
+        .class-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        .nav-item {
+            margin-bottom: 5px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 10px 12px;
+            color: var(--sidebar-text);
+            background-color: rgba(255, 255, 255, 0.03);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: var(--sidebar-text-hover);
+            padding-left: 16px;
+        }
+
+        /* Área principal de contenido */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .top-bar {
+            padding: 15px 30px;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .content-frame {
+            flex: 1;
+            border: none;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+        }
+
+        .welcome-view {
+            padding: 40px;
+            text-align: center;
+            margin: auto;
+        }
+
+        .welcome-view h1 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .welcome-view p {
+            color: var(--text-muted);
+            max-width: 500px;
+            line-height: 1.5;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BARRA LATERAL (Menú de clases y vistas) -->
+    <sidebar>
+        <div class="sidebar-header">
+            <h2>📚 Mis Clases</h2>
+            <!-- Buscador para filtrar clases rápidamente -->
+            <input type="text" id="searchInput" class="search-box" placeholder="Buscar clase o vista..." onkeyup="filterViews()">
+        </div>
+        
+        <ul class="nav-list" id="navList">
+            
+            <!-- CLASE 1 -->
+            <div class="class-group" data-category="clase 1">
+                <div class="class-title">Clase 1</div>
+                <li class="nav-item">
+                    <a href="clase1/vista1.html" target="vistaFrame" class="nav-link">Vista 1: Pantalla Principal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="clase1/vista2.html" target="vistaFrame" class="nav-link">Vista 2: Formulario de Registro</a>
+                </li>
+            </div>
+
+            <!-- CLASE 2 -->
+            <div class="class-group" data-category="clase 2">
+                <div class="class-title">Clase 2</div>
+                <li class="nav-item">
+                    <a href="clase2/vista1.html" target="vistaFrame" class="nav-link">Vista 1: Listado de Datos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="clase2/vista2.html" target="vistaFrame" class="nav-link">Vista 2: Panel de Administración</a>
+                </li>
+            </div>
+
+            <!-- Puedes seguir copiando y pegando bloques .class-group para más clases -->
+
+        </ul>
+    </sidebar>
+
+    <!-- ÁREA PRINCIPAL -->
+    <main>
+        <div class="top-bar">
+            <span id="currentTitle">Selecciona una vista de la izquierda 👈</span>
+        </div>
+        
+        <!-- Aquí se cargan tus vistas automáticamente sin recargar la página -->
+        <iframe name="vistaFrame" class="content-frame">
+            <!-- Vista inicial por defecto si no se hace clic -->
+            <div class="welcome-view">
+                <h1>Bienvenido a tu panel</h1>
+                <p>Haz clic en cualquiera de las vistas del menú izquierdo para comenzar a explorarlas de forma organizada y fluida.</p>
+            </div>
+        </iframe>
+    </main>
+
+    <script>
+        // Script para el buscador en tiempo real
+        function filterViews() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let groups = document.getElementsByClassName('class-group');
+
+            for (let i = 0; i < groups.length; i++) {
+                let text = groups[i].innerText.toLowerCase();
+                if (text.includes(input)) {
+                    groups[i].style.display = "";
+                } else {
+                    groups[i].style.display = "none";
+                }
+            }
+        }
+
+        // Cambiar título superior al hacer clic en un enlace
+        const links = document.querySelectorAll('.nav-link');
+        const titleSpan = document.getElementById('currentTitle');
+
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                titleSpan.textContent = this.textContent;
+            });
+        });
+    </script>
+</body>
+</html>
